@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Table
 @Entity
@@ -11,15 +12,19 @@ public class Company {
 
 	@Id
 	@Column(name = "CompanyID")
+	@NotEmpty(message = "CompanyId should not be  null/blank.")
 	private String companyId;
 
 	@Column(name = "CompanyName")
+	@NotEmpty(message = "CompanyName should not be  null/blank.")
 	private String companyName;
 
 	@Column(name = "DataAddedDate")
+	@NotEmpty(message = "Date should not be  null/blank.")
 	private String dataAddedDate;
 
 	@Column(name = "Month")
+	@NotEmpty(message = "Month should not be  null/blank.")
 	private String month;
 
 	@Column(name = "Total_Monthly_Revenue")
@@ -35,9 +40,11 @@ public class Company {
 	private double budget;
 
 	@Column(name = "State")
+	@NotEmpty(message = "State should not be blank")
 	private String state;
 
 	@Column(name = "District")
+	@NotEmpty(message = "District should not be blank")
 	private String district;
 
 	public Company() {
@@ -59,7 +66,6 @@ public class Company {
 		this.district = district;
 	}
 
-	
 	public String getCompanyId() {
 		return companyId;
 	}

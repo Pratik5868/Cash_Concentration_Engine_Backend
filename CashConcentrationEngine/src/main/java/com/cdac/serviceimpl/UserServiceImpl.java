@@ -3,6 +3,7 @@ package com.cdac.serviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cdac.Exception.BusinessException;
 import com.cdac.entity.User;
 import com.cdac.repository.UserRepository;
 import com.cdac.service.UserService;
@@ -17,13 +18,21 @@ public class UserServiceImpl implements UserService {
 	public void addUser(User user) {
 		userRepository.save(user);
 	}
-    @Override
+
+	@Override
 	public String loginUser(String userName, String password) {
 		User checkUser = userRepository.findByUserName(userName);
-		if (checkUser.getUserName().equals(userName) && checkUser.getPassword().equals(password)) {
-			return "Successfully Login...!";
+		String message = "Not a valid User..";
+
+		if (checkUser != null) {
+			if (checkUser.getUserName().equals(userName) && checkUser.getPassword().equals(password)) {
+				message = "Successfully Login...!";
+				return message;
+			}
+
 		}
-		return "Not a valid User";
+		return message;
+
 	}
 
 	@Override

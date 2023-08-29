@@ -10,4 +10,6 @@ public interface CompanyService {
      public void deleteCompanyData(String companyId);
      public List<Company> getAllCompany();
      public Company getCompanyById(String companyId);
+//     public boolean isCompanyEmpty(Company company);
+//     public boolean dataNotProvided(Object object);
 }

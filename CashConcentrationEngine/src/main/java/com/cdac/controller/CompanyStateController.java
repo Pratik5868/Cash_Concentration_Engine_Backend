@@ -2,6 +2,8 @@ package com.cdac.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ public class CompanyStateController {
 	// GetMapping use to fetch all the data from database based on district value
 	// pass as path variable.
 	@GetMapping("getCompanyByDistrict/{district}")
-	public List<Company> getCompanyByDistrict(@PathVariable String district) {
+	public List<Company> getCompanyByDistrict(@Valid @PathVariable String district) {
 		return companyServiceImpl.getCompanyByDistrict(district);
 	}
 
@@ -31,7 +33,7 @@ public class CompanyStateController {
 	 * passed.
 	 */
 	@GetMapping("getprofitorlossdata")
-	public double getProfitOrLossData(@RequestParam String district, @RequestParam String month) {
+	public double getProfitOrLossData(@Valid @RequestParam String district, @Valid @RequestParam String month) {
 		return companyServiceImpl.getProfitOrLoss(district, month);
 	}
 

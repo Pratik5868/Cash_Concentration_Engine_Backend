@@ -59,7 +59,8 @@ public class CompanyController {
     
 	//DeleteMapping is use to delete the company from database using companyid.
 	@DeleteMapping("deleteData")
-	public void deleteCompany(@RequestParam String companyId) {
+	public void deleteCompany(
+			@Valid @RequestParam String companyId) {
 		companyService.deleteCompanyData(companyId);
 
 	}

@@ -11,20 +11,22 @@ import com.cdac.entity.Company;
 import com.cdac.repository.CompanyRepository;
 import com.cdac.service.CompanyStateService;
 
+//Service implementation class
 @Service
 public class CompanyStateServiceImpl implements CompanyStateService {
 
+	// Company repository reference is autowired.
 	@Autowired
 	private CompanyRepository companyRepository;
 
+	// Get all company list from database on the basis of district passed.
+	@Override
 	public List<Company> getCompanyByDistrict(String district) {
 		return this.companyRepository.getCompanyByDistrict(district);
 	}
 
-//	public List<Company> getCompanyByMonth(String month) {
-//		return this.companyRepository.getCompanyByMonth(month);
-//	}
-
+	// Profit and loss logic at state level
+	@Override
 	public double getProfitOrLoss(String district, String month) {
 		double profit = 0, loss = 0;
 		ArrayList<Company> company = (ArrayList<Company>) getCompanyByDistrict(district);
@@ -45,25 +47,5 @@ public class CompanyStateServiceImpl implements CompanyStateService {
 
 		return loss;
 	}
-
-//	public double getProfitOrLossByMonth(String month) {
-//		ArrayList<Company> company = (ArrayList<Company>) this.getCompanyByMonth(month);
-//		double profit = 0, loss = 0, remainingMonthlyRevenue = 0, totalBudget = 0;
-//		for (Company comp : company) {
-//			if (comp.getMonth().equals(month)) {
-//				remainingMonthlyRevenue += comp.getTotalMonthlyRevenue()
-//						- (comp.getTotalMonthlySalaries() + comp.getTotalMonthlyAllowances());
-//				totalBudget += comp.getBudget();
-//			}
-//		}
-//		if (remainingMonthlyRevenue >= totalBudget) {
-//			return profit = remainingMonthlyRevenue - totalBudget;
-//
-//		} else {
-//			return loss = totalBudget - remainingMonthlyRevenue;
-//
-//		}
-//
-//	}
 
 }

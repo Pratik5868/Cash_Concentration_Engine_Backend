@@ -8,17 +8,21 @@ import com.cdac.entity.User;
 import com.cdac.repository.UserRepository;
 import com.cdac.service.UserService;
 
+//Service implementation class
 @Service
 public class UserServiceImpl implements UserService {
 
+	// User repository reference is autowired.
 	@Autowired
 	private UserRepository userRepository;
 
+	// Add User method
 	@Override
 	public void addUser(User user) {
 		userRepository.save(user);
 	}
 
+	// login validation method
 	@Override
 	public String loginUser(String userName, String password) {
 		User checkUser = userRepository.findByUserName(userName);
@@ -35,6 +39,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	// User data update method.
 	@Override
 	public String updateUserData(User user, String userId) {
 		User updateUser = findUser(userId);
@@ -45,6 +50,7 @@ public class UserServiceImpl implements UserService {
 		return "User Updated Successfully...!";
 	}
 
+	// User password method.
 	public String updateUserPassword(String userId, String newPassword) {
 		User updateUser = findUser(userId);
 		updateUser.setPassword(newPassword);
@@ -52,6 +58,7 @@ public class UserServiceImpl implements UserService {
 		return "Password Updated Successfully...!";
 	}
 
+	// User data to find on basis of user_id passed
 	@Override
 	public User findUser(String userId) {
 

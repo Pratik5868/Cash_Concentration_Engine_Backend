@@ -6,10 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
-
+//User Entity Class
 @Entity
 @Table(name = "User_Table")
-
 public class User {
 	
 	@Id

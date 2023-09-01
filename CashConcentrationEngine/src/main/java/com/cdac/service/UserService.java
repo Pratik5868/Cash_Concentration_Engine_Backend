@@ -2,6 +2,7 @@ package com.cdac.service;
 
 import com.cdac.entity.User;
 
+//User service interface to provide methods and loose coupling.
 public interface UserService {
 	public void addUser(User user);
 

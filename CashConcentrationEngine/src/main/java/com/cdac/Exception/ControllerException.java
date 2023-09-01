@@ -2,6 +2,7 @@ package com.cdac.Exception;
 
 import org.springframework.stereotype.Component;
 
+//ControllerException class is created which handle Controller level exception.
 @Component
 public class ControllerException extends RuntimeException{
 

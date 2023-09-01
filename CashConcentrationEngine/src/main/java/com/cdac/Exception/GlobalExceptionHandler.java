@@ -12,37 +12,38 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
-
+//Global Exception handler class is created to handle xceptions present in entire project which are commonly occured
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-	
+
+	//Annotation for handling exceptions in specific handler classes and/orhandler methods. 
 	@ExceptionHandler(NoSuchElementException.class)
-	public ResponseEntity<String> resourceNotFoundExceptionHandler(NoSuchElementException exception){
-		
-		return new ResponseEntity<String>("Data not found",HttpStatus.NOT_FOUND);
+	public ResponseEntity<String> resourceNotFoundExceptionHandler(NoSuchElementException exception) {
+
+		return new ResponseEntity<String>("Data not found", HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(EmptyResultDataAccessException.class)
-    public ResponseEntity<String> emptyResultDataAccessException(EmptyResultDataAccessException exception){
-    	return new ResponseEntity<String>("No Company with this Id exist!!!",HttpStatus.NOT_ACCEPTABLE);
-    }
-	
+	public ResponseEntity<String> emptyResultDataAccessException(EmptyResultDataAccessException exception) {
+		return new ResponseEntity<String>("No Company with this Id exist!!!", HttpStatus.NOT_ACCEPTABLE);
+	}
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String,String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception){
-    	Map<String,String> response = new HashMap<>();
-    	exception.getBindingResult().getAllErrors().forEach((error)->{
-    		String fieldName = ((FieldError)error).getField();
-    		String message = error.getDefaultMessage();
-    		response.put(fieldName, message);
-    	});
-    	
-    	return new ResponseEntity<Map<String,String>>(response,HttpStatus.BAD_REQUEST);
-    }
-	
+	public ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(
+			MethodArgumentNotValidException exception) {
+		Map<String, String> response = new HashMap<>();
+		exception.getBindingResult().getAllErrors().forEach((error) -> {
+			String fieldName = ((FieldError) error).getField();
+			String message = error.getDefaultMessage();
+			response.put(fieldName, message);
+		});
+
+		return new ResponseEntity<Map<String, String>>(response, HttpStatus.BAD_REQUEST);
+	}
+
 	@ExceptionHandler(NullPointerException.class)
-	public ResponseEntity<String> nullPointerException(NullPointerException exception){
-		return new ResponseEntity<String>("No data found..!",HttpStatus.NOT_FOUND);
+	public ResponseEntity<String> nullPointerException(NullPointerException exception) {
+		return new ResponseEntity<String>("No data found..!", HttpStatus.NOT_FOUND);
 	}
 
 }

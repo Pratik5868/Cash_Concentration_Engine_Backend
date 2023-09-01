@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-
+//Company Entity Class
 @Table
 @Entity
 public class Company {

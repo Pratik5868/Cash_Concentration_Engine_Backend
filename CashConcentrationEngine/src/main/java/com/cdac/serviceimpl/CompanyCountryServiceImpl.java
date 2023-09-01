@@ -9,19 +9,24 @@ import org.springframework.stereotype.Service;
 import com.cdac.entity.Company;
 import com.cdac.repository.CompanyRepository;
 import com.cdac.service.CompanyCountryService;
+
+//Service implementation class
 @Service
 public class CompanyCountryServiceImpl implements CompanyCountryService {
-	
+
+	// Company repository reference is autowired.
 	@Autowired
 	private CompanyRepository companyRepository;
 
+	// Get all company list from database on the basis of state passed.
+	@Override
 	public List<Company> getCompany(String state) {
 		return this.companyRepository.getCompanyByState(state);
 	}
-	
-	
+
+	// Profit and loss logic at country level
 	@Override
-	public double getProfitOrLossByMonth(String state,String month) {
+	public double getProfitOrLossByMonth(String state, String month) {
 		ArrayList<Company> company = (ArrayList<Company>) this.getCompany(state);
 		double profit = 0, loss = 0, remainingMonthlyRevenue = 0, totalBudget = 0;
 		for (Company comp : company) {

@@ -11,4 +11,6 @@ public interface CompanyCountryService {
 
 	public List<Company> getCompany(String state);
 
+	public String getProfitfromStates(String state, String month);
+
 }

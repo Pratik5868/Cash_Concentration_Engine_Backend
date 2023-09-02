@@ -17,6 +17,7 @@ public class CompanyCountryServiceTest {
 	@Test
 	void getProfitOrLossByMonthTest() {
 		double dataTest = companyCountryService.getProfitOrLossByMonth("MH", "May");
+		System.out.println(dataTest);
 		assertNotNull(dataTest);
 	}
 

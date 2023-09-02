@@ -11,4 +11,6 @@ public interface CompanyStateService {
 
 	public List<Company> getCompanyByDistrict(String district);
 
+	public String getProfitfromDistricts(String district, String month);
+
 }

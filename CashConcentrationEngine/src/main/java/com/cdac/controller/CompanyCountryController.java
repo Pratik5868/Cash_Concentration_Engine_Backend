@@ -31,9 +31,9 @@ public class CompanyCountryController {
 	// GetMapping use to fetch the profit from database based on the state and month
 	// passed.
 	@GetMapping("getprofitorlossdatabycountry")
-	public double getProfitOrLossDataCountryLevel(@Valid @RequestParam String state,
+	public String getProfitOrLossDataCountryLevel(@Valid @RequestParam String state,
 			@Valid @RequestParam String month) {
-		return companyCountryService.getProfitOrLossByMonth(state, month);
+		return companyCountryService.getProfitfromStates(state, month);
 	}
 
 }

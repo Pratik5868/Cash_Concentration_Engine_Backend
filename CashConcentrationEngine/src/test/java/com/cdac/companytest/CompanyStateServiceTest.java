@@ -16,8 +16,10 @@ public class CompanyStateServiceTest {
 	
 	@Test
 	void getProfitOrLossTest() {
-		double dataTest = companyStateService.getProfitOrLoss("MH", "May");
+		String dataTest = companyStateService.getProfitfromDistricts("Kar", "May");
+		System.out.println(dataTest);
 		assertNotNull(dataTest);
 	}
 
+	
 }

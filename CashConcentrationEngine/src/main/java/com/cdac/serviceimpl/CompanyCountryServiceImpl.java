@@ -46,4 +46,26 @@ public class CompanyCountryServiceImpl implements CompanyCountryService {
 
 	}
 
+	public double calculateTotalBudgetAssign(String state) {
+		double totalBudget = 0;
+
+		ArrayList<Company> company = (ArrayList<Company>) this.getCompany(state);
+		for (Company comp : company) {
+			totalBudget += comp.getBudget();
+		}
+		return totalBudget;
+	}
+
+	public String getProfitfromStates(String state, String month) {
+		double valueProfitorLoss = getProfitOrLossByMonth(state, month);
+		double valueTotalBudget = calculateTotalBudgetAssign(state);
+		if (valueProfitorLoss > valueTotalBudget) {
+			return "We are running in a profit with money:- Rs" + valueProfitorLoss + "/-";
+		} else if (valueProfitorLoss < valueTotalBudget) {
+			return "We are running in a Loss with money:-Rs" + valueProfitorLoss + "/-";
+		} else {
+			return "We are running within the budget:-Rs" + valueProfitorLoss + "/-";
+		}
+	}
+
 }

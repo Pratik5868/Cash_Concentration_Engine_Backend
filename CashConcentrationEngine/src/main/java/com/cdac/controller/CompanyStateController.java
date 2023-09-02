@@ -33,8 +33,8 @@ public class CompanyStateController {
 	 * passed.
 	 */
 	@GetMapping("getprofitorlossdata")
-	public double getProfitOrLossData(@Valid @RequestParam String district, @Valid @RequestParam String month) {
-		return companyServiceImpl.getProfitOrLoss(district, month);
+	public String getProfitOrLossData(@Valid @RequestParam String district, @Valid @RequestParam String month) {
+		return companyServiceImpl.getProfitfromDistricts(district, month);
 	}
 
 }

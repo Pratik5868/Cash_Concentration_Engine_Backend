@@ -48,4 +48,26 @@ public class CompanyStateServiceImpl implements CompanyStateService {
 		return loss;
 	}
 
+	public double calculateTotalBudgetAssign(String district) {
+		double totalBudget = 0;
+
+		ArrayList<Company> company = (ArrayList<Company>) getCompanyByDistrict(district);
+		for (Company comp : company) {
+			totalBudget += comp.getBudget();
+		}
+		return totalBudget;
+	}
+
+	public String getProfitfromDistricts(String district, String month) {
+		double valueProfitorLoss = getProfitOrLoss(district, month);
+		double valueTotalBudget = calculateTotalBudgetAssign(district);
+		if (valueProfitorLoss > valueTotalBudget) {
+			return "We are running in a profit with money:- Rs" + valueProfitorLoss+"/-";
+		} else if (valueProfitorLoss < valueTotalBudget) {
+			return "We are running in a Loss with money:-Rs" + valueProfitorLoss+"/-";
+		} else {
+			return "We are running within the budget:-Rs" + valueProfitorLoss+"/-";
+		}
+	}
+
 }
